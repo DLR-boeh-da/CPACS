@@ -30013,7 +30013,7 @@ The fuel tank volume type should also be used for the wing fuel tank</xsd:docume
             <xsd:extension base="complexBaseType">
                 <xsd:all>
                     <xsd:element name="required" type="doubleBaseType"/>
-                    <xsd:element name="actual" type="doubleBaseType"/>
+                    <xsd:element name="actual" minOccurs="0" type="doubleBaseType"/>
                 </xsd:all>
             </xsd:extension>
         </xsd:complexContent>
