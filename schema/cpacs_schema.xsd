@@ -8279,11 +8279,11 @@ cpacs@dlr.de
                     </ddue:summary>
                     <ddue:remarks>
                         <ddue:content>
-                            <ddue:para>The deflection path of a control surface is described with respect to two hinge points - 
+                            <ddue:para>The deflection path of a control surface is described with respect to two hinge points -
                                 one at the inner border of the control surface and one at the outer border of the control surface.
                                 These two points are defined by the xsi and relative height coordinates of the parent.
                                 In addition, a translation (with respect to the wing coordinate system) can be applied.
-                                Therefore they can also be defined outside of the control surface. 
+                                Therefore they can also be defined outside of the control surface.
                                 These two points define the hinge line, which is a straight line between them.
                             </ddue:para>
                             <ddue:para>An example is shown below:</ddue:para>
@@ -12543,7 +12543,7 @@ cpacs@dlr.de
                     </xsd:element>
                     <xsd:element name="massInertia" minOccurs="0" type="massInertiaType"/>
                 </xsd:sequence>
-                <xsd:attribute name="uID" use="required" type="xsd:ID"/>
+                <xsd:attribute name="uID" type="xsd:ID"/>
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
