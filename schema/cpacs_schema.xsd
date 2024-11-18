@@ -6805,7 +6805,7 @@ cpacs@dlr.de
                         </xsd:element>
                     </xsd:choice>
                     <xsd:element name="parentUID" minOccurs="0" type="stringUIDBaseType"/>
-                    <xsd:element name="transformation" minOccurs="0" type="transformationExplicitType"/>
+                    <xsd:element name="transformation" minOccurs="0" type="transformationRTType"/>
                     <xsd:element name="structuralMountUIDs" minOccurs="0" type="uIDSequenceType">
                         <xsd:annotation>
                             <xsd:documentation>UIDs of the structural mounts as defined in the fuselages or wings (see structuralMountType for further details).</xsd:documentation>
@@ -12500,7 +12500,8 @@ cpacs@dlr.de
                     <xsd:element name="parallelepiped" type="parallelepipedType"/>
                     <xsd:element name="frustum" type="frustumType"/>
                     <xsd:element name="sphere" type="sphereType"/>
-                    <xsd:element name="genericGeometryComponent" type="genericGeometryComponentType"/>
+                    <xsd:element name="externalGeometry" type="externalGeometryType"/>
+                    <xsd:element name="genericGeometry" type="genericGeometryType"/>
                     <xsd:element name="boundingBox" type="boundingBoxType"/>
                 </xsd:choice>
             </xsd:extension>
@@ -13609,6 +13610,29 @@ cpacs@dlr.de
                             then componentSegment eta-xsi coordinates are used.</xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
+                </xsd:all>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="externalGeometryType">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <sd:schemaDoc>
+                    <ddue:summary>
+                        <ddue:para>External geometry</ddue:para>
+                    </ddue:summary>
+                    <ddue:remarks>
+                        <ddue:para/>
+                    </ddue:remarks>
+                </sd:schemaDoc>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="complexBaseType">
+                <xsd:all>
+                    <xsd:element name="linkToFile" type="linkToFileType"/>
+                    <xsd:element name="transformation" type="transformationType"/>
                 </xsd:all>
             </xsd:extension>
         </xsd:complexContent>
@@ -15435,6 +15459,13 @@ cpacs@dlr.de
                             <xsd:documentation>Upper radius [m] (if not defined: equals lowerRadius)</xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
+                    <xsd:element name="scaling" minOccurs="0" type="pointType">
+                        <xsd:annotation>
+                            <xsd:documentation>Scaling data default: 1,1,1. Those parameters
+                                describe the scaling of the x-, y-, and z-axis.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
                 </xsd:all>
             </xsd:extension>
         </xsd:complexContent>
@@ -16965,25 +16996,22 @@ The fuel tank volume type should also be used for the wing fuel tank</xsd:docume
         </xsd:complexContent>
     </xsd:complexType>
 
-    <xsd:complexType name="genericGeometryComponentType">
+    <xsd:complexType name="genericGeometryType">
         <xsd:annotation>
             <xsd:appinfo>
                 <sd:schemaDoc>
                     <ddue:summary>
-                        <ddue:para>Generic geometry component</ddue:para>
+                        <ddue:para>Generic geometry</ddue:para>
                     </ddue:summary>
-                    <ddue:remarks>
-                        <ddue:para/>
-                    </ddue:remarks>
                 </sd:schemaDoc>
             </xsd:appinfo>
         </xsd:annotation>
         <xsd:complexContent>
             <xsd:extension base="complexBaseType">
-                <xsd:all>
-                    <xsd:element name="linkToFile" type="linkToFileType"/>
-                    <xsd:element name="transformation" type="transformationType"/>
-                </xsd:all>
+                <xsd:choice>
+                    <xsd:element name="longitudinalBodies" minOccurs="0" type="longitudinalBodiesType"/>
+                    <xsd:element name="transverseBodies" minOccurs="0" type="transverseBodiesType"/>
+                </xsd:choice>
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
@@ -20845,6 +20873,56 @@ The fuel tank volume type should also be used for the wing fuel tank</xsd:docume
                     <xsd:element name="longFloorBeamPosition" minOccurs="2" maxOccurs="unbounded" type="longFloorBeamPositionType"/>
                 </xsd:sequence>
                 <xsd:attribute name="uID" use="required" type="xsd:ID"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="longitudinalBodiesType">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <sd:schemaDoc>
+                    <ddue:summary>
+                        <ddue:para>Longitudinal bodies</ddue:para>
+                    </ddue:summary>
+                </sd:schemaDoc>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="complexBaseType">
+                <xsd:sequence>
+                    <xsd:element name="longitudinalBody" maxOccurs="unbounded" type="longitudinalBodyType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="longitudinalBodyType">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <sd:schemaDoc>
+                    <ddue:summary>
+                        <ddue:para>Longitudinal body (lofted in streamwise direction, like a fuselage)</ddue:para>
+                    </ddue:summary>
+                </sd:schemaDoc>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="complexBaseType">
+                <xsd:all>
+                    <xsd:element name="parentUID" minOccurs="0" type="stringUIDBaseType">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                UID of part to which the longitudinal body is mounted (if any).
+                                The parent of the longitudinal body can be the transverse body.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="transformation" type="transformationType"/>
+                    <xsd:element name="sections" type="fuselageSectionsType"/>
+                    <xsd:element name="segments" type="fuselageSegmentsType"/>
+                </xsd:all>
+                <xsd:attribute name="uID" use="required" type="xsd:ID"/>
+                <xsd:attribute name="symmetry" type="symmetryXyXzYzType"/>
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
@@ -26949,6 +27027,13 @@ The fuel tank volume type should also be used for the wing fuel tank</xsd:docume
                             </xsd:annotation>
                         </xsd:element>
                     </xsd:sequence>
+                    <xsd:element name="scaling" minOccurs="0" type="pointType">
+                        <xsd:annotation>
+                            <xsd:documentation>Scaling data default: 1,1,1. Those parameters
+                                describe the scaling of the x-, y-, and z-axis.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
                 </xsd:sequence>
             </xsd:extension>
         </xsd:complexContent>
@@ -33015,6 +33100,13 @@ The fuel tank volume type should also be used for the wing fuel tank</xsd:docume
                             <xsd:documentation>Radius [m]</xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
+                    <xsd:element name="scaling" minOccurs="0" type="pointType">
+                        <xsd:annotation>
+                            <xsd:documentation>Scaling data default: 1,1,1. Those parameters
+                                describe the scaling of the x-, y-, and z-axis.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
                 </xsd:all>
             </xsd:extension>
         </xsd:complexContent>
@@ -35621,7 +35713,7 @@ The fuel tank volume type should also be used for the wing fuel tank</xsd:docume
         </xsd:complexContent>
     </xsd:complexType>
 
-    <xsd:complexType name="transformationExplicitType">
+    <xsd:complexType name="transformationRTType">
         <xsd:annotation>
             <xsd:appinfo>
                 <sd:schemaDoc>
@@ -35630,70 +35722,37 @@ The fuel tank volume type should also be used for the wing fuel tank</xsd:docume
                     </ddue:summary>
                     <ddue:remarks>
                         <ddue:para>Transformation type, containing a set of
-                            transformations. The order of the transformations is scaling
-                            -&gt; rotation -&gt; translation, and they are executed in this
+                            transformations. The order of the transformations is
+                            rotation -&gt; translation, and they are executed in this
                             order. Any of them can be omitted; it will be replaced by its
                             defaults.</ddue:para>
-                        <ddue:para>Transformations are always executed relative to the
-                            child not the parent. I.e. a scaling does not have an influence
-                            on the parent item. For example in the outer geometry of a wing
-                            the element scaling does not influence the section. Scaling does
-                            also not effect rotation and translation.</ddue:para>
-                        <ddue:para>Scaling data default: 1,1,1. Those parameters
-                                describe the scaling of the x-, y-, and z-axis.</ddue:para>
-                        <ddue:para>Rotation data default: 0,0,0. The rotation
-                                angles are the three Euler angles to describe the orientation of
-                                the coordinate system. The order is always xyz in CPACS.
-                                Therefore the first rotation is around the x-axis, the second
-                                rotation is around the rotated y-axis (y') and the third
-                                rotation is around the two times rotated z-axis (z'').</ddue:para>
-                        <ddue:para>Translation data default: 0,0,0. Translations
-                                can either be made absolute in the global coordinate system
-                                (absGlobal) or absolute in the local Coordinate system (absLocal).</ddue:para>
                     </ddue:remarks>
                 </sd:schemaDoc>
             </xsd:appinfo>
         </xsd:annotation>
         <xsd:complexContent>
             <xsd:extension base="complexBaseType">
-                <xsd:choice>
-                    <xsd:sequence>
-                        <xsd:element name="scaling" type="pointType">
-                            <xsd:annotation>
-                                <xsd:documentation>Scaling</xsd:documentation>
-                            </xsd:annotation>
-                        </xsd:element>
-                        <xsd:element name="rotation" minOccurs="0" type="pointType">
-                            <xsd:annotation>
-                                <xsd:documentation>Rotation</xsd:documentation>
-                            </xsd:annotation>
-                        </xsd:element>
-                        <xsd:element name="translation" minOccurs="0" type="pointAbsRelType">
-                            <xsd:annotation>
-                                <xsd:documentation>Translation</xsd:documentation>
-                            </xsd:annotation>
-                        </xsd:element>
-                    </xsd:sequence>
-                    <xsd:sequence>
-                        <xsd:element name="rotation" type="pointType">
-                            <xsd:annotation>
-                                <xsd:documentation>Rotation</xsd:documentation>
-                            </xsd:annotation>
-                        </xsd:element>
-                        <xsd:element name="translation" minOccurs="0" type="pointAbsRelType">
-                            <xsd:annotation>
-                                <xsd:documentation>Translation</xsd:documentation>
-                            </xsd:annotation>
-                        </xsd:element>
-                    </xsd:sequence>
-                    <xsd:sequence>
-                        <xsd:element name="translation" type="pointAbsRelType">
-                            <xsd:annotation>
-                                <xsd:documentation>Translation</xsd:documentation>
-                            </xsd:annotation>
-                        </xsd:element>
-                    </xsd:sequence>
-                </xsd:choice>
+                <xsd:all>
+                    <xsd:element name="rotation" minOccurs="0" type="pointType">
+                        <xsd:annotation>
+                            <xsd:documentation>Rotation data default: 0,0,0. The rotation
+                                angles are the three Euler angles to describe the orientation of
+                                the coordinate system. The order is always xyz in CPACS.
+                                Therefore the first rotation is around the x-axis, the second
+                                rotation is around the rotated y-axis (y') and the third
+                                rotation is around the two times rotated z-axis (z'').
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="translation" minOccurs="0" type="pointAbsRelType">
+                        <xsd:annotation>
+                            <xsd:documentation>Translation data default: 0,0,0. Translations
+                                can either be made absolute in the global coordinate system
+                                (absGlobal) or absolute in the local Coordinate system (absLocal).
+                                </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:all>
                 <xsd:attribute name="uID" type="xsd:ID"/>
             </xsd:extension>
         </xsd:complexContent>
@@ -36014,6 +36073,55 @@ The fuel tank volume type should also be used for the wing fuel tank</xsd:docume
                     <xsd:element name="shaftOutputs" minOccurs="0" type="transmissionShaftOutputsType"/>
                 </xsd:all>
                 <xsd:attribute name="uID" use="required" type="xsd:ID"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="transverseBodiesType">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <sd:schemaDoc>
+                    <ddue:summary>
+                        <ddue:para>Transverse bodies</ddue:para>
+                    </ddue:summary>
+                </sd:schemaDoc>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="complexBaseType">
+                <xsd:sequence>
+                    <xsd:element name="transverseBody" maxOccurs="unbounded" type="transverseBodyType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="transverseBodyType">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <sd:schemaDoc>
+                    <ddue:summary>
+                        <ddue:para>Transverse body (i.e., cross-stream direction, like a wing)</ddue:para>
+                    </ddue:summary>
+                </sd:schemaDoc>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="complexBaseType">
+                <xsd:all>
+                    <xsd:element name="parentUID" minOccurs="0" type="stringUIDBaseType">
+                        <xsd:annotation>
+                            <xsd:documentation>UID of part to which the transverse body is mounted (if any).
+                                The parent of the transverse body can be the longitudinal body.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="transformation" type="transformationType"/>
+                    <xsd:element name="sections" type="wingSectionsType"/>
+                    <xsd:element name="segments" type="wingSegmentsType"/>
+                </xsd:all>
+                <xsd:attribute name="uID" use="required" type="xsd:ID"/>
+                <xsd:attribute name="symmetry" type="symmetryXyXzYzType"/>
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
