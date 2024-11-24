@@ -31,9 +31,9 @@
                     <name>Battery</name>
                     <geometry>
                         <parallelepiped>
-                            <a>0.2</a>
-                            <b>0.1</b>
-                            <c>0.1</c>
+                            <length>0.2</length>
+                            <width>0.1</width>
+                            <height>0.1</height>
                         </parallelepiped>
                     </geometry>
                     <!-- Will be introduced in v3.6-->

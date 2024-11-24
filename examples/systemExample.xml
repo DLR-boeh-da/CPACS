@@ -483,9 +483,9 @@
                     <name>E-Motor</name>
                     <geometry>
                         <frustum>
-                            <lowerRadius>1</lowerRadius>
+                            <lowerRadiusX>1</lowerRadiusX>
                             <height>2</height>
-                            <upperRadius>1</upperRadius>
+                            <upperRadiusX>1</upperRadiusX>
                         </frustum>
                     </geometry>
                 </electricMotor>
@@ -495,9 +495,9 @@
                     <name>Heat exchanger</name>
                     <geometry>
                         <parallelepiped>
-                            <a>1</a>
-                            <b>1</b>
-                            <c>1</c>
+                            <length>1</length>
+                            <width>1</width>
+                            <height>1</height>
                         </parallelepiped>
                     </geometry>
                 </heatExchanger>
@@ -507,9 +507,9 @@
                     <name>Gear box</name>
                     <geometry>
                         <frustum>
-                            <lowerRadius>0.56419</lowerRadius>
+                            <lowerRadiusX>0.56419</lowerRadiusX>
                             <height>1</height>
-                            <upperRadius>0.56419</upperRadius>
+                            <upperRadiusX>0.56419</upperRadiusX>
                         </frustum>
                     </geometry>
                 </gearBox>
@@ -519,9 +519,9 @@
                     <name>GasTurbine</name>
                     <geometry>
                         <frustum>
-                            <lowerRadius>1</lowerRadius>
+                            <lowerRadiusX>1</lowerRadiusX>
                             <height>3</height>
-                            <upperRadius>1</upperRadius>
+                            <upperRadiusX>1</upperRadiusX>
                         </frustum>
                     </geometry>
                 </gasTurbine>
@@ -531,9 +531,9 @@
                     <name>Generator</name>
                     <geometry>
                         <frustum>
-                            <lowerRadius>0.56419</lowerRadius>
+                            <lowerRadiusX>0.56419</lowerRadiusX>
                             <height>1</height>
-                            <upperRadius>0.56419</upperRadius>
+                            <upperRadiusX>0.56419</upperRadiusX>
                         </frustum>
                     </geometry>
                 </generator>

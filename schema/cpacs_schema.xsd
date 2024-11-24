@@ -12590,19 +12590,19 @@ cpacs@dlr.de
         <xsd:complexContent>
             <xsd:extension base="complexBaseType">
                 <xsd:all>
-                    <xsd:element name="a" type="doubleBaseType">
+                    <xsd:element name="radiusX" type="doubleBaseType">
                         <xsd:annotation>
-                            <xsd:documentation>a: Radius in x-direction [m]</xsd:documentation>
+                            <xsd:documentation>Radius in x-direction [m]</xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
-                    <xsd:element name="b" minOccurs="0" type="doubleBaseType">
+                    <xsd:element name="radiusY" minOccurs="0" type="doubleBaseType">
                         <xsd:annotation>
-                            <xsd:documentation>b: Radius in y-direction [m] (if not defined: equals a)</xsd:documentation>
+                            <xsd:documentation>Radius in y-direction [m] (if not defined: equals radiusX)</xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
-                    <xsd:element name="c" minOccurs="0" type="doubleBaseType">
+                    <xsd:element name="radiusZ" minOccurs="0" type="doubleBaseType">
                         <xsd:annotation>
-                            <xsd:documentation>c: Radius in z-direction [m] (if not defined: equals a)</xsd:documentation>
+                            <xsd:documentation>Radius in z-direction [m] (if not defined: equals radiusX)</xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
                 </xsd:all>
@@ -15482,9 +15482,14 @@ cpacs@dlr.de
         <xsd:complexContent>
             <xsd:extension base="complexBaseType">
                 <xsd:all>
-                    <xsd:element name="lowerRadius" type="doubleBaseType">
+                    <xsd:element name="lowerRadiusX" type="doubleBaseType">
                         <xsd:annotation>
-                            <xsd:documentation>Upper radius [m]</xsd:documentation>
+                            <xsd:documentation>Upper radius in local x-direction [m]</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="lowerRadiusY" minOccurs="0" type="doubleBaseType">
+                        <xsd:annotation>
+                            <xsd:documentation>Upper radius in local y-direction [m] (if not defined: equals lowerRadiusX)</xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
                     <xsd:element name="height" type="doubleBaseType">
@@ -15492,9 +15497,14 @@ cpacs@dlr.de
                             <xsd:documentation>Height [m]</xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
-                    <xsd:element name="upperRadius" minOccurs="0" type="doubleBaseType">
+                    <xsd:element name="upperRadiusX" minOccurs="0" type="doubleBaseType">
                         <xsd:annotation>
-                            <xsd:documentation>Upper radius [m] (if not defined: equals lowerRadius)</xsd:documentation>
+                            <xsd:documentation>Upper radius in local x-direction [m] (if not defined: equals lowerRadiusX)</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="upperRadiusY" minOccurs="0" type="doubleBaseType">
+                        <xsd:annotation>
+                            <xsd:documentation>Upper radius in local y-direction [m] (if not defined: equals lowerRadiusX)</xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
                 </xsd:all>
@@ -27026,35 +27036,35 @@ The fuel tank volume type should also be used for the wing fuel tank</xsd:docume
         <xsd:complexContent>
             <xsd:extension base="complexBaseType">
                 <xsd:sequence>
-                    <xsd:element name="a" type="doubleBaseType">
+                    <xsd:element name="length" type="doubleBaseType">
                         <xsd:annotation>
-                            <xsd:documentation>Length [m]</xsd:documentation>
+                            <xsd:documentation>Length (in local x-direction) [m]</xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
-                    <xsd:element name="b" type="doubleBaseType">
+                    <xsd:element name="width" type="doubleBaseType">
                         <xsd:annotation>
-                            <xsd:documentation>Width [m]</xsd:documentation>
+                            <xsd:documentation>Width (in local y-direction) [m]</xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
-                    <xsd:element name="c" type="doubleBaseType">
+                    <xsd:element name="height" type="doubleBaseType">
                         <xsd:annotation>
-                            <xsd:documentation>Height [m]</xsd:documentation>
+                            <xsd:documentation>Height (in local z-direction) [m]</xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
                     <xsd:sequence minOccurs="0">
                         <xsd:element name="alpha" type="doubleBaseType">
                             <xsd:annotation>
-                                <xsd:documentation>Angle between b and c [deg]</xsd:documentation>
+                                <xsd:documentation>Angle between edges in width and height direction (default: 90deg) [deg]</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                         <xsd:element name="beta" type="doubleBaseType">
                             <xsd:annotation>
-                                <xsd:documentation>Angle between a and c [deg]</xsd:documentation>
+                                <xsd:documentation>Angle between edges in length and height direction (default: 90deg) [deg]</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                         <xsd:element name="gamma" type="doubleBaseType">
                             <xsd:annotation>
-                                <xsd:documentation>Angle between a and b [deg]</xsd:documentation>
+                                <xsd:documentation>Angle between edges in length and width direction (default: 90deg) [deg]</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                     </xsd:sequence>

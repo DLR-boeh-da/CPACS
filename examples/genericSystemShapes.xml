@@ -29,7 +29,7 @@
                     <name>Pre-defined sphere</name>
                     <geometry>
                         <ellipsoid>
-                            <a>0.62035</a>
+                            <radiusX>0.62035</radiusX>
                         </ellipsoid>
                     </geometry>
                 </genericComponent>
@@ -37,9 +37,9 @@
                     <name>Pre-defined cube</name>
                     <geometry>
                         <parallelepiped>
-                            <a>1</a>
-                            <b>1</b>
-                            <c>1</c>
+                            <length>1</length>
+                            <width>1</width>
+                            <height>1</height>
                         </parallelepiped>
                     </geometry>
                 </genericComponent>
@@ -47,7 +47,7 @@
                     <name>Pre-defined cylinder</name>
                     <geometry>
                         <frustum>
-                            <lowerRadius>0.56419</lowerRadius>
+                            <lowerRadiusX>0.56419</lowerRadiusX>
                             <height>1</height>
                         </frustum>
                     </geometry>
@@ -56,9 +56,9 @@
                     <name>Pre-defined cone</name>
                     <geometry>
                         <frustum>
-                            <lowerRadius>1</lowerRadius>
+                            <lowerRadiusX>1</lowerRadiusX>
                             <height>0.95493</height>
-                            <upperRadius>0</upperRadius>
+                            <upperRadiusX>0</upperRadiusX>
                         </frustum>
                     </geometry>
                 </genericComponent>
