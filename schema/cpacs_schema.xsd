@@ -12499,7 +12499,7 @@ cpacs@dlr.de
                 <xsd:choice>
                     <xsd:element name="parallelepiped" type="parallelepipedType"/>
                     <xsd:element name="frustum" type="frustumType"/>
-                    <xsd:element name="sphere" type="sphereType"/>
+                    <xsd:element name="ellipsoid" type="ellipsoidType"/>
                     <xsd:element name="externalGeometry" type="externalGeometryType"/>
                     <xsd:element name="genericGeometry" type="genericGeometryType"/>
                     <xsd:element name="boundingBox" type="boundingBoxType"/>
@@ -12565,6 +12565,44 @@ cpacs@dlr.de
                     <xsd:element name="halfAxisFraction" type="doubleBaseType">
                         <xsd:annotation>
                             <xsd:documentation>Half axis fraction</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:all>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="ellipsoidType">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <sd:schemaDoc>
+                    <ddue:summary>
+                        <ddue:para>Ellipsoid</ddue:para>
+                    </ddue:summary>
+                    <ddue:remarks>
+                        <ddue:para>The local component coordinate system of the ellipsoid lies in its center.
+                            From there, the "radius" extends to the edge of the ellipsoid.
+                        </ddue:para>
+                    </ddue:remarks>
+                </sd:schemaDoc>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="complexBaseType">
+                <xsd:all>
+                    <xsd:element name="a" type="doubleBaseType">
+                        <xsd:annotation>
+                            <xsd:documentation>a: Radius in x-direction [m]</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="b" minOccurs="0" type="doubleBaseType">
+                        <xsd:annotation>
+                            <xsd:documentation>a: Radius in y-direction [m] (if not defined: equals a)</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="c" minOccurs="0" type="doubleBaseType">
+                        <xsd:annotation>
+                            <xsd:documentation>a: Radius in z-direction [m] (if not defined: equals a)</xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
                 </xsd:all>
@@ -15459,13 +15497,6 @@ cpacs@dlr.de
                             <xsd:documentation>Upper radius [m] (if not defined: equals lowerRadius)</xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
-                    <xsd:element name="scaling" minOccurs="0" type="pointType">
-                        <xsd:annotation>
-                            <xsd:documentation>Scaling data default: 1,1,1. Those parameters
-                                describe the scaling of the x-, y-, and z-axis.
-                            </xsd:documentation>
-                        </xsd:annotation>
-                    </xsd:element>
                 </xsd:all>
             </xsd:extension>
         </xsd:complexContent>
@@ -16992,6 +17023,29 @@ The fuel tank volume type should also be used for the wing fuel tank</xsd:docume
                 <xsd:sequence>
                     <xsd:element name="genericGeometryComponent" maxOccurs="unbounded" type="genericGeometricComponentType"/>
                 </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="genericGeometryComponentType">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <sd:schemaDoc>
+                    <ddue:summary>
+                        <ddue:para>Generic geometry component</ddue:para>
+                    </ddue:summary>
+                    <ddue:remarks>
+                        <ddue:para/>
+                    </ddue:remarks>
+                </sd:schemaDoc>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="complexBaseType">
+                <xsd:all>
+                    <xsd:element name="linkToFile" type="linkToFileType"/>
+                    <xsd:element name="transformation" type="transformationType"/>
+                </xsd:all>
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
@@ -27027,13 +27081,6 @@ The fuel tank volume type should also be used for the wing fuel tank</xsd:docume
                             </xsd:annotation>
                         </xsd:element>
                     </xsd:sequence>
-                    <xsd:element name="scaling" minOccurs="0" type="pointType">
-                        <xsd:annotation>
-                            <xsd:documentation>Scaling data default: 1,1,1. Those parameters
-                                describe the scaling of the x-, y-, and z-axis.
-                            </xsd:documentation>
-                        </xsd:annotation>
-                    </xsd:element>
                 </xsd:sequence>
             </xsd:extension>
         </xsd:complexContent>
@@ -33075,41 +33122,6 @@ The fuel tank volume type should also be used for the wing fuel tank</xsd:docume
                 </xsd:enumeration>
             </xsd:restriction>
         </xsd:simpleContent>
-    </xsd:complexType>
-
-    <xsd:complexType name="sphereType">
-        <xsd:annotation>
-            <xsd:appinfo>
-                <sd:schemaDoc>
-                    <ddue:summary>
-                        <ddue:para>Sphere</ddue:para>
-                    </ddue:summary>
-                    <ddue:remarks>
-                        <ddue:para>The local component coordinate system of the sphere lies in its center.
-                            From there, the "radius" extends to the edge of the sphere.
-                        </ddue:para>
-                    </ddue:remarks>
-                </sd:schemaDoc>
-            </xsd:appinfo>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="complexBaseType">
-                <xsd:all>
-                    <xsd:element name="radius" type="doubleBaseType">
-                        <xsd:annotation>
-                            <xsd:documentation>Radius [m]</xsd:documentation>
-                        </xsd:annotation>
-                    </xsd:element>
-                    <xsd:element name="scaling" minOccurs="0" type="pointType">
-                        <xsd:annotation>
-                            <xsd:documentation>Scaling data default: 1,1,1. Those parameters
-                                describe the scaling of the x-, y-, and z-axis.
-                            </xsd:documentation>
-                        </xsd:annotation>
-                    </xsd:element>
-                </xsd:all>
-            </xsd:extension>
-        </xsd:complexContent>
     </xsd:complexType>
 
     <xsd:complexType name="spoilersType">
