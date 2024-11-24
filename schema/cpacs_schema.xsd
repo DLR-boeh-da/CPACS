@@ -4973,7 +4973,7 @@ cpacs@dlr.de
                             <xsd:complexType>
                             <xsd:choice>
                                 <xsd:element name="containerGeometry" type="cargoContainerGeometryType"/>
-                                <xsd:element name="genericGeometryComponent" type="genericGeometryComponentType"/>
+                                <xsd:element name="externalGeometry" type="externalGeometryType"/>
                                 <xsd:element name="boundingBox" type="boundingBoxType"/>
                             </xsd:choice>
                         </xsd:complexType>
@@ -12597,12 +12597,12 @@ cpacs@dlr.de
                     </xsd:element>
                     <xsd:element name="b" minOccurs="0" type="doubleBaseType">
                         <xsd:annotation>
-                            <xsd:documentation>a: Radius in y-direction [m] (if not defined: equals a)</xsd:documentation>
+                            <xsd:documentation>b: Radius in y-direction [m] (if not defined: equals a)</xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
                     <xsd:element name="c" minOccurs="0" type="doubleBaseType">
                         <xsd:annotation>
-                            <xsd:documentation>a: Radius in z-direction [m] (if not defined: equals a)</xsd:documentation>
+                            <xsd:documentation>c: Radius in z-direction [m] (if not defined: equals a)</xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
                 </xsd:all>
