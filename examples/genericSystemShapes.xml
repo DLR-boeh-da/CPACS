@@ -28,9 +28,9 @@
                 <genericComponent uID="predefinedSphere">
                     <name>Pre-defined sphere</name>
                     <geometry>
-                        <sphere>
-                            <radius>0.62035</radius>
-                        </sphere>
+                        <ellipsoid>
+                            <a>0.62035</a>
+                        </ellipsoid>
                     </geometry>
                 </genericComponent>
                 <genericComponent uID="predefinedCube">
@@ -77,11 +77,6 @@
                                     <name>Shere</name>
                                     <systemElementUID>predefinedSphere</systemElementUID>
                                     <transformation>
-                                        <scaling>
-                                            <x>1.0</x>
-                                            <y>1.0</y>
-                                            <z>1.0</z>
-                                        </scaling>
                                         <rotation>
                                             <x>0.0</x>
                                             <y>0.0</y>
@@ -98,11 +93,6 @@
                                     <name>Cube</name>
                                     <systemElementUID>predefinedCube</systemElementUID>
                                     <transformation>
-                                        <scaling>
-                                            <x>1.0</x>
-                                            <y>1.0</y>
-                                            <z>1.0</z>
-                                        </scaling>
                                         <rotation>
                                             <x>0.0</x>
                                             <y>0.0</y>
@@ -119,11 +109,6 @@
                                     <name>Cylinder</name>
                                     <systemElementUID>predefinedCylinder</systemElementUID>
                                     <transformation>
-                                        <scaling>
-                                            <x>1.0</x>
-                                            <y>1.0</y>
-                                            <z>1.0</z>
-                                        </scaling>
                                         <rotation>
                                             <x>0.0</x>
                                             <y>0.0</y>
@@ -140,11 +125,6 @@
                                     <name>Cone</name>
                                     <systemElementUID>predefinedCone</systemElementUID>
                                     <transformation>
-                                        <scaling>
-                                            <x>1.0</x>
-                                            <y>1.0</y>
-                                            <z>1.0</z>
-                                        </scaling>
                                         <rotation>
                                             <x>0.0</x>
                                             <y>0.0</y>

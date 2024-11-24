@@ -1465,11 +1465,6 @@
                                     <name>Cube</name>
                                     <systemElementUID>predefinedCube</systemElementUID>
                                     <transformation>
-                                        <scaling>
-                                            <x>0.4</x>
-                                            <y>0.3</y>
-                                            <z>0.2</z>
-                                        </scaling>
                                         <translation>
                                             <x>4.5</x>
                                             <z>0.3</z>
@@ -1721,9 +1716,9 @@
                     <name>Pre-defined cube</name>
                     <geometry>
                         <parallelepiped>
-                            <a>1</a>
-                            <b>1</b>
-                            <c>1</c>
+                            <a>0.4</a>
+                            <b>0.3</b>
+                            <c>0.2</c>
                         </parallelepiped>
                     </geometry>
                 </genericComponent>
