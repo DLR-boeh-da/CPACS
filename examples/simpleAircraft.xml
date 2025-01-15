@@ -1103,7 +1103,7 @@
                                 <name>Vertical Tailplane Section Positioning</name>
                                 <length>1.5</length>
                                 <sweepAngle>45</sweepAngle>
-                                <dihedralAngle>5</dihedralAngle>
+                                <dihedralAngle>0</dihedralAngle>
                                 <toSectionUID>vTP_Sec2</toSectionUID>
                             </positioning>
                         </positionings>
